@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@theme {
+  --font-futuristic: "Orbitron", sans-serif;
+  
+  --font-yashly: "Poppins", sans-serif; 
+}
+
