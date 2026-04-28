@@ -1,6 +1,10 @@
 import React from 'react'
+import { Addtocart } from '../RTK/Products.js';
+import { useDispatch } from 'react-redux';
+
 
 export default function Products({products}) {
+    const dispatch = useDispatch();
    
 if (!products) return <div className="text-white text-center">Loading Products...</div>;
     return (
@@ -20,7 +24,8 @@ if (!products) return <div className="text-white text-center">Loading Products..
                             <p  className=" py-1 text-red-800">discount - {item.discountPercentage}%</p>
                             <p  className=" py-2 px-2">DESC: {item.description}</p>
                             <div className='flex items-center bg-green-700 rounded mx-10 mt-auto mb-5 '>
-                            <button className='mx-auto'>Add to Cart</button>
+                            <button className='mx-auto transition-transform duration-150 ease-in-out 
+             active:scale-65 shadow-md cursor-pointer' onClick={()=>{dispatch(Addtocart(item))}}>Add to Cart</button>
                             </div>
                         </div>
                     </div>

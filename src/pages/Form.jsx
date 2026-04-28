@@ -13,55 +13,6 @@ export default function Form({setIsLoggedIn}) {
     UserNameError : '',
     PasswordError : ''
   })
- 
-// const handleLogin = (e) => {
-//     e.preventDefault();
-//     const storeduser = JSON.parse(localStorage.getItem('userCredentials'));
-     
-//     if (!storeduser) {
-//       toast.warn("No User Found!");
-//       return;
-//     }
-
-//     let NewError = {UserNameError:'',PasswordError:''};
-//     let isValid = true;
-
-//     if(username === ''){
-//       NewError.UserNameError = "Please Enter Your Username"; 
-//       isValid = false
-//     }
-//     else if (storeduser.name !== username){
-//       NewError.UserNameError = "Username is Incorrect! Please Login with Registered Username";
-//       toast.warn("Username is Incorrect")
-//       isValid = false
-//     }
-    
-//     else if(password === ''){
-//       NewError.PasswordError = "Please Enter Your Password";
-//       isValid = false
-//     }
-//     else if (storeduser.password !== password){
-//       NewError.PasswordError = "Password is Incorrect! Please Enter your Registered password";
-//       toast.warn("password is Incorrect")
-//       isValid = false
-//     }
-    
-//    if (storeduser.name === username && storeduser.password === password) {
-//       toast.success("Loged in Sucessfully")
-
-//       const updatedUser = { ...storeduser, IsLoggedIn: true };
-//       localStorage.setItem('userCredentials', JSON.stringify(updatedUser));
-     
-//       navigate("/home",{replace:true});
-//       setIsLoggedIn(true);
-//       return;
-//     }
-    
-    
-//       setError({...NewError});
-//       return isValid;
-//   };
-
 
 // Function to hash the password for comparison
 async function hashPassword(string) {

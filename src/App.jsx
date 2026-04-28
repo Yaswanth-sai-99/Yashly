@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate} from 'react-router-dom';
 import { ToastContainer, Zoom} from 'react-toastify';
 import axios from 'axios';
 import './App.css';
-
 import Header from './components/Header';
 import Navigation from './Routing/Navigation';
 
 export default function App() {
+  const navigate = useNavigate()
   const location = useLocation();
   const authRoutes = ['/','/login', '/signup'];
   const isAuthPage = authRoutes.includes(location.pathname);
 
-
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(()=>{
+    const user = localStorage.getItem('userCredentials');
+    if(user){
+      const parsed = JSON.parse(user);
+      return parsed.IsLoggedIn || false
+    }
+    return false;
+  });
   const [products, setProduct] = useState([]);
 
 
   useEffect(() => {
-    const User = localStorage.getItem('userCredentials');
-    if (User) {
+    const Userstr = localStorage.getItem('userCredentials');
+    if (Userstr) {
       try{
-        const U = JSON.parse(User);
-        setIsLoggedIn(U.IsLoggedIn == true);
+        const U = JSON.parse(Userstr);
+         if(U.IsLoggedIn){
+          setIsLoggedIn(true)
+          if(window.location.pathname === "/" || window.location.pathname === "/login")
+          navigate("/home", { replace: true });
+         }
+        
       } catch(e){
         console.error("Parsing Error", e)
       }
