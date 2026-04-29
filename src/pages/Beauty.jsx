@@ -2,8 +2,11 @@ import React from 'react'
 import { CiHome } from "react-icons/ci";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+import { Addtocart } from '../RTK/Products';
 
 export default function Beauty({ products }) {
+  const dispatch = useDispatch()
   return (
     <>
       <div className='flex flex-1  items-center bg-green-50 mt-6'>
@@ -27,7 +30,7 @@ export default function Beauty({ products }) {
                 <p className=" py-1 text-red-800">discount - {item.discountPercentage}</p>
                 <p className=" py-2 px-2">DESC: {item.description}</p>
                 <div className='flex items-center bg-green-700 rounded mx-10 mt-auto mb-5 '>
-                  <button className='mx-auto'>Add to Cart</button>
+                  <button className='mx-auto active:scale-65 shadow-md cursor-pointer' onClick={()=>{dispatch(Addtocart(item))}}>Add to Cart</button>
                 </div>
               </div>
             </div>
