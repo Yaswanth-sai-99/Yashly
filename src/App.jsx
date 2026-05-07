@@ -5,12 +5,14 @@ import axios from 'axios';
 import './App.css';
 import Header from './components/Header';
 import Navigation from './Routing/Navigation';
+import Sidebar from './components/Sidebar';
 
 export default function App() {
   const navigate = useNavigate()
   const location = useLocation();
   const authRoutes = ['/','/login', '/signup'];
   const isAuthPage = authRoutes.includes(location.pathname);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const [isLoggedIn, setIsLoggedIn] = useState(()=>{
     const user = localStorage.getItem('userCredentials');
@@ -21,7 +23,6 @@ export default function App() {
     return false;
   });
   const [products, setProduct] = useState([]);
-
 
   useEffect(() => {
     const Userstr = localStorage.getItem('userCredentials');
@@ -58,8 +59,9 @@ export default function App() {
             pauseOnHover
             theme="dark" // Matches your Yashly dark theme better
           />
-      {isLoggedIn && !isAuthPage && <Header setIsLoggedIn={setIsLoggedIn} />}
-          
+      {isLoggedIn && !isAuthPage && <Header setIsLoggedIn={setIsLoggedIn} onOpenSidebar ={()=> setIsSidebarOpen(true)}/>}
+        <Sidebar isOpen ={isSidebarOpen} setIsLoggedIn={setIsLoggedIn} onClose={()=> setIsSidebarOpen(false)} setIsSidebarOpen={setIsSidebarOpen} />  
+
           <main className={isLoggedIn && !isAuthPage ? "auth-wrapper" : "content-wrapper"}>
             <Navigation products={products} setIsLoggedIn={setIsLoggedIn} />
           </main>

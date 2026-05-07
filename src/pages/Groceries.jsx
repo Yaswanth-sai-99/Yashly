@@ -3,6 +3,8 @@ import { CiHome } from "react-icons/ci";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { useDispatch} from 'react-redux';
+import { Addtocart } from '../RTK/Products';
+
 export default function Groceries({ products }) {
     const dispatch = useDispatch()
 

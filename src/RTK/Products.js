@@ -29,9 +29,12 @@ const ProductSlice = createSlice({
         },
         RemoveFromcart : (state,action) =>{
             state.Cart = state.Cart.filter(item => item.id !== action.payload.id )
+        },
+        logoutCart :(state)=>{
+            state.Cart = [];
         }
     }
 });
 
 export default ProductSlice.reducer;
-export const {Addtocart, RemoveFromcart ,incrementQty ,decrementQty} = ProductSlice.actions
+export const {Addtocart, RemoveFromcart ,incrementQty ,decrementQty, logoutCart} = ProductSlice.actions
